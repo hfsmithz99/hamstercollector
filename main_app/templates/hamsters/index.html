@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Hamster List</h1>
+
+{% for hamster in hamsters %}
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title">{{ hamster.name }}</span>
+      <p>Breed: {{ hamster.color }}</p>
+      <p>Description: {{ hamster.description }}</p>
+      {% if hamster.age > 0 %}
+        <p>Age: {{ hamster.age }}</p>
+      {% else %}
+        <p>Age: Newborn</p>
+      {% endif %}
+    </div>
+  </div>
+{% endfor %}
+
+{% endblock %}
