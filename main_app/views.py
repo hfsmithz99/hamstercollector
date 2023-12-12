@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Hamster
 # hamsters = [
   #  {'name': 'Dune', 'color': 'blonde', 'description': 'Young and full of life', 'age': 1},
@@ -19,3 +20,15 @@ def hamsters_index(request):
 def hamster_detail(request, hamster_id):
     hamster = Hamster.objects.get(id=hamster_id)
     return render(request, 'hamsters/detail.html', {'hamster': hamster})
+
+class HamsterCreate(CreateView):
+    model = Hamster
+    fields = '__all__'
+
+class HamsterUpdate(UpdateView):
+    model = Hamster
+    fields = ['color', 'description', 'age']
+
+class HamsterDelete(DeleteView):
+    model = Hamster
+    success_url = '/hamsters'
